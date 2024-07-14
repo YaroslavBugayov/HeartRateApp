@@ -1,45 +1,29 @@
 package com.bugayov.heartrateapp.ui.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.bugayov.heartrateapp.R
 import com.bugayov.heartrateapp.ui.components.ScrollIndicator
 import com.bugayov.heartrateapp.ui.navHosts.OnboardingNavHost
-import com.bugayov.heartrateapp.ui.theme.RubikFontFamily
+import com.bugayov.heartrateapp.ui.routes.ScreenRoutes
 
 @Composable
-fun OnboardingScreen() {
-    val navController = rememberNavController()
-    val currentPage = remember {
-        mutableStateOf(0)
-    }
+fun OnboardingScreen(screenNavController: NavHostController) {
+    val onboardingNavController = rememberNavController()
+    val pagesCount = 3
+    val currentPage = remember { mutableStateOf(0) }
+
+    if (currentPage.value >= pagesCount) { screenNavController.navigate(ScreenRoutes.HOMEPAGE) }
 
     Column(
         Modifier
@@ -47,20 +31,20 @@ fun OnboardingScreen() {
             .padding(horizontal = 15.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        OnboardingNavHost(modifier = Modifier.weight(4.5F), navController)
+        OnboardingNavHost(modifier = Modifier.weight(4.5F), onboardingNavController)
         Box(
             modifier = Modifier.weight(1F),
             contentAlignment = Alignment.Center
         ) {
-            Column() {
-                ScrollIndicator(3, listOf("Почати", "Продовжити", "Почати"), currentPage)
+            Column {
+                ScrollIndicator(pagesCount, listOf("Почати", "Продовжити", "Почати"), currentPage)
             }
         }
     }
 
     when (currentPage.value) {
-        0 -> navController.navigate("onboarding1")
-        1 -> navController.navigate("onboarding2")
-        2 -> navController.navigate("onboarding3")
+        0 -> onboardingNavController.navigate("onboarding1")
+        1 -> onboardingNavController.navigate("onboarding2")
+        2 -> onboardingNavController.navigate("onboarding3")
     }
 }

@@ -22,15 +22,6 @@ fun App() {
             delay(3000L)
             screenNavController.navigate(ScreenRoutes.ONBOARDING)
         }
-        ScreenNavHost(modifier = Modifier, navController = screenNavController)
-    }
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun GreetingPreview() {
-    HeartRateAppTheme {
-        Circle()
-        OnboardingScreen()
+        ScreenNavHost(modifier = Modifier, screenNavController = screenNavController)
     }
 }
