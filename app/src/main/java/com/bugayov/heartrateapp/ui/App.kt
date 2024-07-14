@@ -18,10 +18,6 @@ fun App() {
 
     HeartRateAppTheme {
         Circle()
-        LaunchedEffect(Unit) {
-            delay(3000L)
-            screenNavController.navigate(ScreenRoutes.ONBOARDING)
-        }
         ScreenNavHost(modifier = Modifier, screenNavController = screenNavController)
     }
 }

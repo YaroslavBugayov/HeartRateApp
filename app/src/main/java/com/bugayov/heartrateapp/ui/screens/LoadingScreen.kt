@@ -53,7 +53,7 @@ fun LoadingScreen(screenNavController: NavController) {
     LaunchedEffect(Unit) {
         for (i in 0..100) {
             progress.value = i
-            delay(20)
+            delay(5)
         }
         screenNavController.navigate(ScreenRoutes.ONBOARDING)
     }

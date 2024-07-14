@@ -28,7 +28,7 @@ fun ScrollIndicator(pagesCount: Int, buttonText: List<String>, currentPage: Muta
             }
         }
 
-        val text: String = if (currentPage.value < buttonText.size) buttonText[currentPage.value] else "Next"
+        val text: String = if (currentPage.value < buttonText.size) buttonText[currentPage.value] else "Почати"
 
         RedButton(text) { currentPage.value++ }
     }
