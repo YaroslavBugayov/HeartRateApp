@@ -18,6 +18,10 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,16 +34,30 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.bugayov.heartrateapp.R
 import com.bugayov.heartrateapp.ui.components.Circle
+import com.bugayov.heartrateapp.ui.routes.ScreenRoutes
 import com.bugayov.heartrateapp.ui.theme.DarkRed
 import com.bugayov.heartrateapp.ui.theme.LightBlue
 import com.bugayov.heartrateapp.ui.theme.LightRed
 import com.bugayov.heartrateapp.ui.theme.Red
 import com.bugayov.heartrateapp.ui.theme.RubikFontFamily
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
-fun LoadingScreen() {
+fun LoadingScreen(screenNavController: NavController) {
+    val progress = remember { mutableStateOf(0) }
+
+    LaunchedEffect(Unit) {
+        for (i in 0..100) {
+            progress.value = i
+            delay(20)
+        }
+        screenNavController.navigate(ScreenRoutes.ONBOARDING)
+    }
+
     Column(
         Modifier
             .fillMaxSize()
@@ -78,20 +96,15 @@ fun LoadingScreen() {
                     .height(14.dp)
                     .clip(CircleShape),
                 color = Red,
-                trackColor = LightRed
+                trackColor = LightRed,
+                progress = progress.value.toFloat() / 100
             )
             Text(
-                text = "0%",
+                text = "${progress.value}%",
                 fontSize = 14.sp,
                 color = Color.White,
                 fontFamily = RubikFontFamily,
             )
         }
     }
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun LoadingScreenPreview() {
-    LoadingScreen()
 }

@@ -31,6 +31,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.bugayov.heartrateapp.R
 import com.bugayov.heartrateapp.ui.components.ScrollIndicator
+import com.bugayov.heartrateapp.ui.navHosts.OnboardingNavHost
 import com.bugayov.heartrateapp.ui.theme.RubikFontFamily
 
 @Composable
@@ -62,79 +63,4 @@ fun OnboardingScreen() {
         1 -> navController.navigate("onboarding2")
         2 -> navController.navigate("onboarding3")
     }
-}
-
-@Composable
-fun OnboardingNavHost(modifier: Modifier, navController: NavHostController) {
-    NavHost(
-        navController = navController,
-        startDestination = "onboarding1",
-        modifier = modifier.padding(top = 100.dp)
-    ) {
-        composable("onboarding1") {
-            Onboarding(
-                R.drawable.onboarding_illustration_1,
-                "Ваш трекер тиску",
-                "Зазначайте, відстежуйте та аналізуйте свої показники артеріального тиску."
-            )
-        }
-        composable("onboarding2") {
-            Onboarding(
-                R.drawable.onboarding_illustration_2,
-                "Персоналізовані поради",
-                "Програма надає дієві поради, які допоможуть вам підтримувати оптимальний рівень артеріального тиску та зменшити фактори ризику серцево-судинних захворювань."
-            )
-        }
-        composable("onboarding3") {
-            Onboarding(
-                R.drawable.onboarding_illustration_3,
-                "Нагадування",
-                "Не відставайте від графіка контролю артеріального тиску та прийому ліків за допомогою спеціальних нагадувань."
-            )
-        }
-    }
-}
-
-@Composable
-fun Onboarding(image: Int, title: String, body: String) {
-    Column(
-        modifier = Modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(horizontal = 50.dp),
-            painter = painterResource(id = image),
-            contentDescription = "illustration",
-            contentScale = ContentScale.Crop
-        )
-        Spacer(
-            Modifier.height(80.dp)
-        )
-        Text(
-            text = title,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.SemiBold,
-            lineHeight = 28.sp,
-            fontFamily = RubikFontFamily,
-            modifier = Modifier.padding(bottom = 15.dp)
-        )
-        Text(
-            text = body,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Normal,
-            lineHeight = 22.sp,
-            fontFamily = RubikFontFamily,
-            textAlign = TextAlign.Center
-        )
-    }
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun Onboarding1ScreenPreview() {
-    OnboardingScreen()
 }
