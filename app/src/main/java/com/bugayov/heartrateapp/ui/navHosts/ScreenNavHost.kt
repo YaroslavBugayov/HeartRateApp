@@ -15,7 +15,7 @@ import com.bugayov.heartrateapp.ui.screens.OnboardingScreen
 fun ScreenNavHost(modifier: Modifier, screenNavController: NavHostController) {
     NavHost(
         navController = screenNavController,
-        startDestination = ScreenRoutes.HOMEPAGE2,
+        startDestination = ScreenRoutes.LOADING,
         modifier = modifier
     ) {
         composable(ScreenRoutes.LOADING) { LoadingScreen(screenNavController) }

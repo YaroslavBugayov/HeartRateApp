@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">HeartRateApp</string>
+    <string name="no_finger_detected_top_label">Палець не виявлено</string>
+    <string name="finger_detected_top_label">Йде Вимірювання.</string>
+    <string name="no_finger_detected_bottom_label">Щільно прикладіть палець до камери</string>
+    <string name="finger_detected_bottom_label">Визначаємо ваш пульс. Утримуйте!</string>
 </resources>

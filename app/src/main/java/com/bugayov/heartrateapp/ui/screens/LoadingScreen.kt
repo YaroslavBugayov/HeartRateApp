@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.bugayov.heartrateapp.R
 import com.bugayov.heartrateapp.ui.components.Circle
+import com.bugayov.heartrateapp.ui.components.ProgressIndicator
 import com.bugayov.heartrateapp.ui.routes.ScreenRoutes
 import com.bugayov.heartrateapp.ui.theme.DarkRed
 import com.bugayov.heartrateapp.ui.theme.LightBlue
@@ -86,25 +87,26 @@ fun LoadingScreen(screenNavController: NavController) {
                 fontFamily = RubikFontFamily
             )
         }
-        Box(
-            modifier = Modifier.weight(1F),
-            contentAlignment = Alignment.Center
-        ) {
-            LinearProgressIndicator(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(14.dp)
-                    .clip(CircleShape),
-                color = Red,
-                trackColor = LightRed,
-                progress = progress.value.toFloat() / 100
-            )
-            Text(
-                text = "${progress.value}%",
-                fontSize = 14.sp,
-                color = Color.White,
-                fontFamily = RubikFontFamily,
-            )
-        }
+        ProgressIndicator(progress = progress, modifier = Modifier.weight(1F))
+//        Box(
+//            modifier = Modifier.weight(1F),
+//            contentAlignment = Alignment.Center
+//        ) {
+//            LinearProgressIndicator(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .height(14.dp)
+//                    .clip(CircleShape),
+//                color = Red,
+//                trackColor = LightRed,
+//                progress = progress.value.toFloat() / 100
+//            )
+//            Text(
+//                text = "${progress.value}%",
+//                fontSize = 14.sp,
+//                color = Color.White,
+//                fontFamily = RubikFontFamily,
+//            )
+//        }
     }
 }

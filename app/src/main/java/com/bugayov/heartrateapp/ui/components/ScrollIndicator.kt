@@ -24,7 +24,10 @@ fun ScrollIndicator(pagesCount: Int, buttonText: List<String>, currentPage: Muta
             verticalAlignment = Alignment.CenterVertically
         ) {
             for (point in 0 until pagesCount) {
-                IndicationPoint(currentPage.value == point)
+                IndicationPoint(
+                    if (currentPage.value < buttonText.size) currentPage.value == point
+                    else point == pagesCount - 1
+                )
             }
         }
 

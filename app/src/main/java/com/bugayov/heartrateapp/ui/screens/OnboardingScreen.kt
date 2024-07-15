@@ -23,8 +23,10 @@ fun OnboardingScreen(screenNavController: NavHostController) {
     val pagesCount = 3
     val currentPage = remember { mutableStateOf(0) }
 
-    if (currentPage.value >= pagesCount) { screenNavController.navigate(ScreenRoutes.HOMEPAGE1) }
-
+    if (currentPage.value >= pagesCount) {
+        screenNavController.navigate(ScreenRoutes.HOMEPAGE1)
+        currentPage.value = 0
+    }
     Column(
         Modifier
             .fillMaxSize()
