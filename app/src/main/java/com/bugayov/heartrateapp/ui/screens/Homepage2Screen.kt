@@ -66,7 +66,12 @@ fun Homepage2Screen(screenNavController: NavHostController) {
                         .width(20.dp)
                 )
             }
-            CameraView(modifier = Modifier.align(Alignment.BottomCenter))
+            CameraView(
+                modifier = Modifier.align(Alignment.BottomCenter),
+                isFingerDetected,
+                progress,
+                pulseBpm
+            )
         }
 
         Text(
@@ -129,6 +134,7 @@ fun Homepage2Screen(screenNavController: NavHostController) {
             }
         }
         if (isFingerDetected.value) {
+            Spacer(modifier = Modifier.height(100.dp))
             ProgressIndicator(progress = progress, modifier = Modifier)
         } else {
             Image(
