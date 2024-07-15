@@ -25,7 +25,7 @@ fun OnboardingScreen(screenNavController: NavHostController) {
 
     if (currentPage.value >= pagesCount) {
         screenNavController.navigate(ScreenRoutes.HOMEPAGE1)
-        currentPage.value = 0
+        currentPage.value = 2
     }
     Column(
         Modifier
