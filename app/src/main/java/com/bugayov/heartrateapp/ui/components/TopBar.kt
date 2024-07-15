@@ -49,21 +49,20 @@ fun TopBar(
 }
 
 @Composable
-fun TopBarText(text: String, modifier: Modifier) {
+fun TopBarText(text: String) {
     Text(
         text = text,
         fontSize = 22.sp,
         fontFamily = RubikFontFamily,
         fontStyle = FontStyle.Normal,
-        color = Color.White,
-        modifier = modifier,
+        color = Color.White
     )
 }
 
 @Composable
-fun TopBarBackButton(screenNavHostController: NavHostController) {
+fun TopBarBackButton(screenNavController: NavHostController) {
     IconButton(onClick = {
-        screenNavHostController.navigate(ScreenRoutes.RESULT)
+        screenNavController.navigate(ScreenRoutes.RESULT)
     }) {
         Icon(
             imageVector = Icons.Default.ArrowBack,
@@ -78,9 +77,9 @@ fun TopBarBackButton(screenNavHostController: NavHostController) {
 }
 
 @Composable
-fun TopBarHistoryButton(screenNavHostController: NavHostController) {
+fun TopBarHistoryButton(screenNavController: NavHostController) {
     IconButton(onClick = {
-        screenNavHostController.navigate(ScreenRoutes.HISTORY)
+        screenNavController.navigate(ScreenRoutes.HISTORY)
     }) {
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.history),

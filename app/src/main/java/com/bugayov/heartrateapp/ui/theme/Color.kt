@@ -21,3 +21,4 @@ val NormalPulse = Color(0xFF1FF19B)
 val FastPulse = Color(0xFFFF4C4C)
 
 val Grey = Color(0xFFE6E6E6)
+val DarkGrey = Color(0xFF808080)
