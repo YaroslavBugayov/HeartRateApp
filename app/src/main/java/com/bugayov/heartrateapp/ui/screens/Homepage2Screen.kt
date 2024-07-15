@@ -17,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -32,16 +33,32 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.bugayov.heartrateapp.R
+import com.bugayov.heartrateapp.database.ResultDao
+import com.bugayov.heartrateapp.database.ResultEntity
 import com.bugayov.heartrateapp.ui.components.CameraView
 import com.bugayov.heartrateapp.ui.components.ProgressIndicator
 import com.bugayov.heartrateapp.ui.routes.ScreenRoutes
 import com.bugayov.heartrateapp.ui.theme.RubikFontFamily
+import java.util.Date
 
 @Composable
-fun Homepage2Screen(screenNavController: NavHostController) {
+fun Homepage2Screen(screenNavController: NavHostController, /*dao: ResultDao*/) {
     val isFingerDetected = remember { mutableStateOf(false) }
     val pulseBpm = remember { mutableStateOf(0) }
     val progress = remember { mutableStateOf(0) }
+
+
+    if (progress.value > 100) {
+        progress.value = 0
+        /*LaunchedEffect(Unit) {
+            dao.insert(ResultEntity(
+                id = 0,
+                bpm = pulseBpm.value,
+                date = Date().time
+            ))
+        }*/
+        screenNavController.navigate(ScreenRoutes.RESULT)
+    }
 
     Column(
         Modifier.fillMaxSize(),

@@ -30,6 +30,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.NavHostController
 import com.bugayov.heartrateapp.utils.PulseAnalyzer
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
@@ -87,6 +88,10 @@ fun CameraView(
         }
 
         camera.cameraControl.enableTorch(torchEnabled.value)
+
+//        if (progress.value > 100) {
+//            imageAnalysis.clearAnalyzer()
+//        }
 
         Box(modifier = modifier) {
             AndroidView(

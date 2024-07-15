@@ -20,7 +20,6 @@ class PulseAnalyzer(
     private var summary = 0.0
     private var lastUpdateTime = 0L
     private var lastProgressTime = 0L
-    private var counter = 0
 
     override fun analyze(image: ImageProxy) {
         val red = calculateAverageRed(image.planes[0].buffer)
@@ -41,21 +40,19 @@ class PulseAnalyzer(
 
             val currentTime = SystemClock.elapsedRealtime()
 
-            if (red < average - 0.4 && isFingerDetected.value && currentTime - lastUpdateTime > 200) {
+            if (red < average - 0.5 && isFingerDetected.value && currentTime - lastUpdateTime > 200) {
                 pulseBpm.value++
                 lastUpdateTime = currentTime
             }
 
             if (currentTime - lastProgressTime > 50) {
-                counter++
+                progress.value++
                 lastProgressTime = currentTime
             }
-            pulseBpm.value = counter * 12
 
         } else {
             progress.value = 0
             pulseBpm.value = 0
-            counter = 0
         }
 
         image.close()
